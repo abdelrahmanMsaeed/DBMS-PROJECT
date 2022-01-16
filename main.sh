@@ -21,44 +21,23 @@ do
             delete_database
             ;;
 		*)
-			echo "Error select option 1..3"
+			echo "you did'n choose option from the previos ones,are you sure you want to exit?"
+            echo 'enter "y" to exit and anything else to main menu'
+            read ans
+            if [ $ans = "y" ] || [ $ans = "Y" ]
+            then
+                exit 0
+            else
+                main
+            fi
             ;;
 	esac			
 done
 }
 
-function delete_database {
-    if [ $# -eq 0 ]
-    then
-        echo "witch DB to delete?"
-        ls DBS/
-        read
-        rm -r DBS/$REPLY
-        echo "$REPLY has been Deleted!"
-    fi
-}
-
- function create_DB {
-
-    echo "enter your DB name"
-    read DB_Name
-    if [ -d DBS/$DB_Name ]
-    then 
-        echo "The DataBase called $DB_Name exist"
-        main
-    else
-        mkdir DBS/$DB_Name
-    fi
-}
- function connect_DB {
-   echo "your available DB"
-   list_database
-   read Connect_DB
-   cd DBS/$Connect_DB
-
-}
-
-
+. ./create.sh
+. ./delete.sh
+. ./connect.sh
 . ./list.sh
 
 main
