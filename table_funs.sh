@@ -10,5 +10,21 @@
             #ask_colms_name()
             #ask primary key
 function touch_table () {
-    echo $1
+    touch $1
 }
+
+function cols_number () {
+    echo "Enter your cols number ..."
+    read  cols
+    re='^[0-9]+$'
+    if ! [[ $cols =~ $re ]]
+    then
+        echo "error: Not a number"
+        cols_number
+    else
+        echo "okay your DB will have $cols coulmns"
+    fi
+    typeset -i hamada=cols
+
+}
+
