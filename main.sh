@@ -91,8 +91,9 @@ function create_table {
         else
             #touch file
 
-            touch_table $touch_table
+            touch_table $table_name
             #ask for number of coulmns
+            cols_number
 
             #ask type -- ask value
             #ask primary key
