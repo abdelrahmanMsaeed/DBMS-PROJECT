@@ -95,9 +95,13 @@ function create_table {
             #ask for number of coulmns
 
             #ask type -- ask value
+
             #ask primary key
+             
         fi
 }
+
+
 
 
 
