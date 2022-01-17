@@ -5,6 +5,7 @@
     if [ -d DBS/$db_connect ]
     then
         cd DBS/$db_connect
+        DB_menu
     else
         echo "There is no DB with this name. press 1 to connect or anything else to main menu"
         select choice in "choose DB to connect" 
@@ -12,6 +13,7 @@
             case $REPLY in
             1)
                 connect_DB
+                
                 ;;
             *)
                 main     
