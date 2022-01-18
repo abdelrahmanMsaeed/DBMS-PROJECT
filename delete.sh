@@ -28,6 +28,11 @@ function drop_table {
     if [ -f $dl_file ]
     then 
         rm $dl_file
+        echo "*****************************************************************"
+        echo "*                                                               *"
+        echo "     your table $dl_file has been deleted successfully     " 
+        echo "*                                                               *"
+        echo "*****************************************************************"         
     else
         echo "There's no table with this name. Enter existing file name ..."
         echo ""

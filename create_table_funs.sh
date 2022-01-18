@@ -1,10 +1,11 @@
-            #ask value
-            #ask_pk()
+
+# create table
 function touch_table () {
     touch $1
 }
 
 
+# metadata = how many columns and it's type
 function cols_number () {
     echo "Enter your cols number ..."
     read  cols
@@ -18,15 +19,16 @@ function cols_number () {
     fi
     typeset -i cols_len=$cols
     cols_len=cols_len-1
-    
-################################### check type ###############################
-
     typeset -i i=0
+
+
     echo "***************************************************"
     echo "*                                                 *"
     echo "*  warning!: the first column will be your (PK)   *" 
     echo "*                                                 *"
     echo "***************************************************"    
+
+################################### check type ###############################
 
     while [ $i -le $cols_len ]
     do
@@ -48,11 +50,7 @@ function cols_number () {
                         echo "Error select option 1 or 2";;
                 esac			
             done
-        fi
-###
-
-        if [ $i -lt $cols_len ]
-        then 
+            else
             echo "type for the column number" 
 
             select choice in 'string' 'number' 
@@ -78,6 +76,8 @@ function cols_number () {
 
 typeset -i y=0
 
+
+# columns metadata = columns name
 function cols_name () {
 
     typeset -i data_cols=0
@@ -92,89 +92,17 @@ function cols_name () {
         if [ $y -eq $data_cols ]
         then    
             echo  "$REPLY" >> $table_name
-        fi
-
-        if [ $y -lt $data_cols ]
-        then
+        else
             echo -n "$REPLY;" >> $table_name
         fi
-        
         y=y+1
     done
-
+        echo "*****************************************************************"
+        echo "*                                                               *"
+        echo "     your $table_name table  has been added successfully     " 
+        echo "*                                                               *"
+        echo "*****************************************************************" 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# function check_type () {
-#     typeset -i i=0
-
-#     while [ $i -lt $1 ]
-#     do 
-#         echo "type for the column number (($i+1))"
-
-#         select choice in 'string' 'number' 
-#         do
-#             case $REPLY in
-#                 1)
-#                     arr[i]=$REPLY;break
-#                     ;;
-#                 2)
-#                     arr[i]=$REPLY;break
-#                     ;;
-#                 *)
-#                     echo "Error select option 1 or 2";;
-#             esac			
-#         done
-        
-#         array[i]=$REPLY
-#         i=i+1
-
-#     done
-#     for value in ${array[*]}
-#     do 
-#         echo value
-#     done
-# }
 
 

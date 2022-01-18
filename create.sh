@@ -1,4 +1,4 @@
-
+# create new database
  function create_DB {
 
     echo "enter your DB name"
@@ -6,8 +6,28 @@
     if [ -d DBS/$DB_Name ]
     then 
         echo "The DataBase called $DB_Name exist"
-        main
     else
         mkdir DBS/$DB_Name
+        echo "*****************************************************************"
+        echo "*                                                               *"
+        echo "     your database $DB_Name has been created successfully     " 
+        echo "*                                                               *"
+        echo "*****************************************************************" 
     fi
+}
+
+
+# create tables in database
+function create_table {
+     
+        echo " Enter your table name you want to create ... "
+        read table_name 
+        if [ -f $table_name ]
+        then
+            echo "this table is already exist"
+            DB_menu
+        else
+            touch_table $table_name
+            cols_number
+        fi
 }
