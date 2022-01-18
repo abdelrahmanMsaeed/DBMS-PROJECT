@@ -42,6 +42,8 @@ function drop_table {
                     echo ""
                     DB_menu
                     ;;
+                *)
+                   echo " you should select from two options only .... "
             esac        
         done
     fi

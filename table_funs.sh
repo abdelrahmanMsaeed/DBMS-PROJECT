@@ -18,10 +18,15 @@ function cols_number () {
     fi
     typeset -i cols_len=$cols
     cols_len=cols_len-1
-
-############################################################################ check type
+    
+################################### check type ###############################
 
     typeset -i i=0
+    echo "***************************************************"
+    echo "*                                                 *"
+    echo "*  warning!: the first column will be your (PK)   *" 
+    echo "*                                                 *"
+    echo "***************************************************"    
 
     while [ $i -le $cols_len ]
     do
