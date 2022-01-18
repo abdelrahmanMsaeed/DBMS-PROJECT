@@ -22,5 +22,29 @@ function delete_database {
     fi    
 }
 
+function drop_table {
+    echo "which table you want to delete .. ?"
+    read dl_file
+    if [ -f $dl_file ]
+    then 
+        rm $dl_file
+    else
+        echo "There's no table with this name. Enter existing file name ..."
+        echo ""
+        select choice in 'try again' 'tables menu'
+        do
+            case $REPLY in
+                1)
+                    drop_table
+                    ;;
+                2) 
+                    echo "*****************"
+                    echo ""
+                    DB_menu
+                    ;;
+            esac        
+        done
+    fi
+}
 
 # . ./list.sh

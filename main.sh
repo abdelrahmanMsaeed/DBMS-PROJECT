@@ -13,6 +13,8 @@ do
             ;;
 		2)
 			list_database
+            #echo "Are you want to list tables ?"
+            #read 
             ;;
 		3)
 		    connect_DB
@@ -47,10 +49,10 @@ do
 			create_table
             ;;
 		2)
-			
+			list_table
             ;;
 		3)
-		    
+		    drop_table
             ;;
         4)
             
