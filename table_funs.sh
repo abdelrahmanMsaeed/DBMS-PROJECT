@@ -45,6 +45,7 @@ function cols_number () {
             done
         fi
 ###
+
         if [ $i -lt $cols_len ]
         then 
             echo "type for the column number" 
@@ -66,8 +67,37 @@ function cols_number () {
             i=i+1
 
     done
+    cols_name
 }
 
+
+typeset -i y=0
+
+function cols_name () {
+
+    typeset -i data_cols=0
+    data_cols=`awk -F";" '{print NF; exit}' $table_name`
+    data_cols=data_cols-1
+    echo $data_cols
+    
+    while [ $y -le $data_cols ]
+    do
+        echo "enter column name" 
+        read
+        if [ $y -eq $data_cols ]
+        then    
+            echo  "$REPLY" >> $table_name
+        fi
+
+        if [ $y -lt $data_cols ]
+        then
+            echo -n "$REPLY;" >> $table_name
+        fi
+        y=y+1
+    done
+
+
+}
 
 
 
