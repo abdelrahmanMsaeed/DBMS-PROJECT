@@ -1,14 +1,5 @@
-
-            #touch file
-            #touch file
-            #touch_table()
-            #ask for number of coulmns
-            #ask_numberof_colms()
-            #ask type -- ask value
+            #ask value
             #ask_pk()
-            #ask_types()
-            #ask_colms_name()
-            #ask primary key
 function touch_table () {
     touch $1
 }
@@ -25,37 +16,98 @@ function cols_number () {
     else
         echo "okay your DB will have $cols coulmns"
     fi
-    typeset -i cols_len=cols
+    typeset -i cols_len=$cols
+    cols_len=cols_len-1
+
 ############################################################################ check type
+
     typeset -i i=0
 
-    while [ $i -lt $cols_len ]
-    do 
-        echo "type for the column number (($i+1))"
+    while [ $i -le $cols_len ]
+    do
 
-        select choice in 'string' 'number' 
-        do
-            case $REPLY in
-                1)
-                    arr[i]=$REPLY;break
-                    ;;
-                2)
-                    arr[i]=$REPLY;break
-                    ;;
-                *)
-                    echo "Error select option 1 or 2";;
-            esac			
-        done
-        
-        array[i]=$REPLY
-        i=i+1
+        if [ $i -eq $cols_len ]
+        then
+            echo "type for the column number" 
+
+            select choice in 'string' 'number' 
+            do
+                case $REPLY in
+                    1)
+                        echo  "$REPLY" >> $table_name;break
+                        ;;
+                    2)
+                        echo  "$REPLY" >> $table_name;break
+                        ;;
+                    *)
+                        echo "Error select option 1 or 2";;
+                esac			
+            done
+        fi
+###
+        if [ $i -lt $cols_len ]
+        then 
+            echo "type for the column number" 
+
+            select choice in 'string' 'number' 
+            do
+                case $REPLY in
+                    1)
+                        echo -n "$REPLY;" >> $table_name;break
+                        ;;
+                    2)
+                        echo -n "$REPLY;" >> $table_name;break
+                        ;;
+                    *)
+                        echo "Error select option 1 or 2";;
+                esac			
+            done
+        fi
+            i=i+1
 
     done
-    for value in ${array[*]}
-    do 
-        echo $value
-    done
-    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # function check_type () {

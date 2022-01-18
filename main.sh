@@ -120,7 +120,6 @@ function create_table {
 
 
 
-
 . ./create.sh
 . ./delete.sh
 . ./connect.sh
