@@ -10,11 +10,21 @@ function insert () {
     while [ $z -le $ins_cols ]
     do
         echo "enter column name" 
-        read
+        read 
         if [ $z -eq 0 ]
         then
             if [ ! -z $REPLY ]
             then
+                # `awk -F";" '{if ($1=="$REPLY") print $1}' $ins_in_table`
+
+
+                awk -v ans=$REPLY 'BEGIN{FS=";"; RS="\n"} {
+                    if ($1==ans)
+                        print "noooo u have entered exiting PK. Get out ", (insert) ; 
+                    else
+                        print "=>","Fail",ans,"\n";
+                    } ' $ins_in_table
+
                 echo -n "$REPLY;" >> $ins_in_table
             else
                 echo "You won't be able to make insertion without enter your PK "
@@ -26,9 +36,9 @@ function insert () {
 
         elif [ $z -eq $ins_cols ]
         then    
-            echo  "$REPLY" >> $ins_in_table
+            echo  "$koko" >> $ins_in_table
         else
-            echo -n "$REPLY;" >> $ins_in_table
+            echo -n "$koko;" >> $ins_in_table
         fi
         z=z+1
     done
