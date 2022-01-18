@@ -39,7 +39,7 @@ done
 
 
 
-
+. ./insert.sh
 . ./db_menu.sh
 . ./create.sh
 . ./delete.sh

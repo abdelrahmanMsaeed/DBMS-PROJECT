@@ -18,7 +18,9 @@ do
             
             ;;
 
-        5)            
+        5)  
+            insert
+            DB_menu          
             ;;
         
         6) 
