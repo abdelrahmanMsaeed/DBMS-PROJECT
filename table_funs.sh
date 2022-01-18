@@ -93,6 +93,7 @@ function cols_name () {
         then
             echo -n "$REPLY;" >> $table_name
         fi
+        
         y=y+1
     done
 
