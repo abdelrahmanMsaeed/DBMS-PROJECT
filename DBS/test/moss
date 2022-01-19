@@ -1,4 +1,2 @@
-2;1;1;1
-ID;name;address;mail
-ahmed;omar;mose;ddc
-mosw;sdf;dsfds;sdf
+number;string;string;number
+ID;name;address;phone

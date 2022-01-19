@@ -41,10 +41,10 @@ function cols_number () {
             do
                 case $REPLY in
                     1)
-                        echo  "$REPLY" >> $table_name;break
+                        echo  "string" >> $table_name;break
                         ;;
                     2)
-                        echo  "$REPLY" >> $table_name;break
+                        echo  "number" >> $table_name;break
                         ;;
                     *)
                         echo "Error select option 1 or 2";;
@@ -57,10 +57,10 @@ function cols_number () {
             do
                 case $REPLY in
                     1)
-                        echo -n "$REPLY;" >> $table_name;break
+                        echo -n "string;" >> $table_name;break
                         ;;
                     2)
-                        echo -n "$REPLY;" >> $table_name;break
+                        echo -n "number;" >> $table_name;break
                         ;;
                     *)
                         echo "Error select option 1 or 2";;
