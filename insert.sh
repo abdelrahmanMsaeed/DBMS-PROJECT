@@ -36,12 +36,10 @@ function insert () {
                         insert                                                
                     fi
                 done
-                if [[ $lolo = "number" && "$REPLY" = +([0-9]) || $lolo = "string" && "$REPLY" = +([a-zA-Z]) ]]
-                then
-                    echo -n "$REPLY;" >> $ins_in_table
-                    hamada=hamada+1
-                    continue 2
-                fi
+
+                echo -n "$REPLY;" >> $ins_in_table
+                hamada=hamada+1
+                continue
 
             else
                 echo "You won't be able to make insertion without enter your PK "
@@ -53,25 +51,19 @@ function insert () {
 
         elif [ $z -eq $ins_cols ]
         then    
-            if [[ $lolo = "number" && "$REPLY" = +([0-9]) || $lolo = "string" && "$REPLY" = +([a-zA-Z]) ]]
-            then
-                echo  "$REPLY" >> $ins_in_table
-                hamada=hamada+1
-                continue 2
-            fi
+            echo  "$REPLY" >> $ins_in_table
+            hamada=hamada+1
+            continue 
 
         else
-            if [[ $lolo = "number" && "$REPLY" = +([0-9]) || $lolo = "string" && "$REPLY" = +([a-zA-Z]) ]]
-            then
-                echo -n "$REPLY;" >> $ins_in_table
-                hamada=hamada+1
-                continue 2
-            fi
+            echo -n "$REPLY;" >> $ins_in_table
+            hamada=hamada+1
+            continue 
 
         fi
 
     done
-
+        o=o+1
         z=z+1
     done
 }
