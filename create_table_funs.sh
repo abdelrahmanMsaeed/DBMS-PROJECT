@@ -79,6 +79,7 @@ typeset -i y=0
 
 # columns metadata = columns name
 function cols_name () {
+    
 
     typeset -i data_cols=0
     data_cols=`awk -F";" '{print NF; exit}' $table_name`

@@ -14,13 +14,15 @@ function insert () {
 
     while [ $z -le $ins_cols ]
     do
-    lolo=`awk -F";" -v"o=$o" '{if(NR==1){print $o}}' $ins_in_table;`
+    col_type=`awk -F";" -v"o=$o" '{if(NR==1){print $o}}' $ins_in_table;`
+    col_data=`awk -F";" -v"o=$o" '{if(NR==2){print $o}}' $ins_in_table;`
+
     echo $lolo
     typeset -i hamada=0
 
     while [ $hamada -eq 0 ]
     do
-        echo "enter column name" 
+        echo "enter $col_data and its type must be $col_type" 
         read 
         if [ $z -eq 0 ]
         then
@@ -37,9 +39,12 @@ function insert () {
                     fi
                 done
 
-                echo -n "$REPLY;" >> $ins_in_table
-                hamada=hamada+1
-                continue
+                if [[ $col_type = "number" && "$REPLY" = +([0-9]) || $col_type = "string" && "$REPLY" = +([a-zA-Z]) ]]
+                then
+                    echo -n "$REPLY;" >> $ins_in_table
+                    hamada=hamada+1
+                fi
+                
 
             else
                 echo "You won't be able to make insertion without enter your PK "
@@ -50,15 +55,22 @@ function insert () {
  
 
         elif [ $z -eq $ins_cols ]
-        then    
-            echo  "$REPLY" >> $ins_in_table
-            hamada=hamada+1
-            continue 
+        then
+
+            if [[ $col_type = "number" && "$REPLY" = +([0-9]) || $col_type = "string" && "$REPLY" = +([a-zA-Z]) ]]
+            then
+                echo  "$REPLY" >> $ins_in_table
+                hamada=hamada+1
+            fi
+             
 
         else
-            echo -n "$REPLY;" >> $ins_in_table
-            hamada=hamada+1
-            continue 
+        
+            if [[ $col_type = "number" && "$REPLY" = +([0-9]) || $col_type = "string" && "$REPLY" = +([a-zA-Z]) ]]
+            then
+                echo -n "$REPLY;" >> $ins_in_table
+                hamada=hamada+1
+            fi
 
         fi
 
@@ -68,4 +80,3 @@ function insert () {
     done
 }
 
-##########ddddd
