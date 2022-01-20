@@ -15,7 +15,8 @@ do
             DB_menu
             ;;
         4)
-            
+            select_table
+            DB_menu
             ;;
 
         5)  
@@ -29,6 +30,8 @@ do
             ;;
         
         7) 
+            update_record
+            DB_menu
             ;;
     
 		*)

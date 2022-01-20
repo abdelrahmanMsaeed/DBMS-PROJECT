@@ -37,7 +37,8 @@ do
 done
 }
 
-
+. ./update.sh
+. ./select.sh
 . ./delete_table.sh
 . ./insert.sh
 . ./db_menu.sh
