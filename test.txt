@@ -1,0 +1,3 @@
+number;string;string;string;number;number
+16;ahmed;cairo;ahmed;010;015
+15;ahdfkl;dalskfjsdk;dsajkhfoisdkjf;516;156
