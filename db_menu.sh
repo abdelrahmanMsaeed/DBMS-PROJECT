@@ -24,6 +24,8 @@ do
             ;;
         
         6) 
+            delete_record
+            DB_menu
             ;;
         
         7) 

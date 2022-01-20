@@ -45,14 +45,12 @@ function insert () {
                     hamada=hamada+1
                 fi
                 
-
             else
                 echo "You won't be able to make insertion without enter your PK "
                 echo "Try again"
                 echo ""
                 insert
         fi
- 
 
         elif [ $z -eq $ins_cols ]
         then
