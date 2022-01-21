@@ -15,12 +15,23 @@ function update_record () {
         DB_menu
     fi
 
+    #metadata for table
     typeset -i fnumber=1
     columns_names=`awk -F";" '{if(NR==2){for ( i=2 ; i<=NF; i++) {print $i}}}' $table_to_update;`
     col_type=`awk -F";" -v"fnumber=$fnumber" '{if(NR==1){print $fnumber}}' $table_to_update;`
 
+    #information for pK
     recordupdate_data=`awk -F";" '{print $1}' $table_to_update`
-    echo $recordupdate_data
+    for key in $recordupdate_data
+    do
+        if [ $key = "string" ] || [ $key = "number" ]
+        then
+            echo "-type: $key"
+        else
+            echo $key
+        fi
+    done
+
     echo "enter the pk for record to update."
     read pk_update
 
