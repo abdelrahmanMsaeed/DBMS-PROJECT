@@ -1,4 +1,5 @@
 function update_record () {
+   
     # gathering information about updates
     echo "enter the table to update" 
     read table_to_update
@@ -11,16 +12,17 @@ function update_record () {
     echo "*  warning! the table you entered does not existed  *" 
     echo "*                                                   *"
     echo "*****************************************************"  
-
         DB_menu
     fi
 
     #metadata for table
     typeset -i fnumber=1
-    columns_names=`awk -F";" '{if(NR==2){for ( i=2 ; i<=NF; i++) {print $i}}}' $table_to_update;`
-    col_type=`awk -F";" -v"fnumber=$fnumber" '{if(NR==1){print $fnumber}}' $table_to_update;`
 
-    #information for pK
+    columns_names=`awk -F";" '{if(NR==2){for ( i=2 ; i<=NF; i++) {print $i}}}' $table_to_update;`
+  #  col_type=`awk -F";" -v"fnumber=$fnumber" '{if(NR==1){for ( fnumber=1 ; fnumber<=NF; fnumber++) {print $fnumber}}}' $table_to_update;`
+
+
+    #information for PK
     recordupdate_data=`awk -F";" '{print $1}' $table_to_update`
     for key in $recordupdate_data
     do
@@ -35,10 +37,18 @@ function update_record () {
     echo "enter the pk for record to update."
     read pk_update
 
-    echo $columns_names
-    echo "which coulum you want to update ..?"
+    echo "which column you want to update ..?"
     read c_name
+
+
+    #check if the columns is there
+    if [[ ! "${columns_names[*]}" =~ "$c_name" ]]; then
+        echo "there is no column with this name"
+        echo ${columns_names[*]}
+        DB_menu
+    fi       
     
+
     echo "what is the new value ?"
     read new_value
 
@@ -52,9 +62,21 @@ function update_record () {
             do
                 indexs=`awk -F";" '{if(NR==2){for ( i=1 ; i<=NF; i++) {if($i=="'$c_name'") {print i}}}}' $table_to_update;`
             done
-            old_value=`awk -F";" -v"indexs=$indexs" '{if(NR=="'$a'"){print $indexs}}' $table_to_update;`
-            
-            `sed -i "/^$value/s/$old_value/$new_value/g" $table_to_update`
+            if [ $a -gt 2 ]
+            then
+                col_type=`awk -F";" -v"indexs=$indexs" '{if(NR==1) {print $indexs}}' $table_to_update;`
+                echo $col_type
+                echo wlaa
+                if [[ $col_type = "number" && "$new_value" = +([0-9]) || $col_type = "string" && "$new_value" = +([a-zA-Z]) ]]
+                then
+                    old_value=`awk -F";" -v"indexs=$indexs" '{if(NR=="'$a'"){print $indexs}}' $table_to_update;`
+                    `sed -i "/^$value/s/$old_value/$new_value/g" $table_to_update`
+                else
+                    echo "wrong type"
+                fi
+            else
+                echo "you cant change metadata"
+            fi
 
         # else
         #   echo "no pk with this name"
