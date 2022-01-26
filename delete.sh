@@ -4,10 +4,15 @@ function delete_database {
     if [ -d DBS/$db_delete ]
     then 
         rm -r DBS/$db_delete
-        echo "$db_delete DataBase has been deleted successfuly"
+        echo "*****************************************************************"
+        echo "*                                                               *"
+        echo "       $db_delete DataBase has been deleted successfuly          "
+        echo "*                                                               *"
+        echo "*****************************************************************"         
         main
+    
     else
-        echo "no such database called $db_delete, enter 1 to delete or any thing else for main menu."
+        echo "no such database called $db_delete, enter 1 to delete anothe DB or any thing else for main menu."
         select choice in "Delete DB" 
         do
             case $REPLY in
@@ -22,7 +27,11 @@ function delete_database {
     fi    
 }
 
+
+
 function drop_table {
+    ls
+    echo ""
     echo "which table you want to delete .. ?"
     read dl_file
     if [ -f $dl_file ]

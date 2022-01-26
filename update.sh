@@ -65,8 +65,6 @@ function update_record () {
             if [ $a -gt 2 ]
             then
                 col_type=`awk -F";" -v"indexs=$indexs" '{if(NR==1) {print $indexs}}' $table_to_update;`
-                echo $col_type
-                echo wlaa
                 if [[ $col_type = "number" && "$new_value" = +([0-9]) || $col_type = "string" && "$new_value" = +([a-zA-Z]) ]]
                 then
                     old_value=`awk -F";" -v"indexs=$indexs" '{if(NR=="'$a'"){print $indexs}}' $table_to_update;`
@@ -86,3 +84,7 @@ function update_record () {
     
 }
 
+            for w in $columns_names
+            do
+                indexs=`awk -F";" '{if(NR==2){for ( i=1 ; i<=NF; i++) {if($i=="'$c_name'") {print i}}}}' $table_to_update;`
+            done

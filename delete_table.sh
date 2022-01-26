@@ -1,4 +1,7 @@
 function delete_record () {
+    echo "which table to insert in?"
+    ls
+
     echo "enter the table to delete from"
     read table_to_delte_from
 
@@ -15,13 +18,8 @@ function delete_record () {
     do
         if [ $value == $pk_del ]
         then
-            #sed -i "/$pk_del/d" $table_to_delte_from
-           # sed -i "/^$pk_del\b/Id" $table_to_delte_from
             sed -i "/^$pk_del/d" $table_to_delte_from
-            #sed -i "0,/$pk_del/{/$pk_del/d;}" $table_to_delte_from
             echo "record deleted"
-        else
-            echo "no pk with this name"
         fi
     done
 

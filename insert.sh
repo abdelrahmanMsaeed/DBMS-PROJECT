@@ -17,10 +17,10 @@ function insert () {
     col_type=`awk -F";" -v"o=$o" '{if(NR==1){print $o}}' $ins_in_table;`
     col_data=`awk -F";" -v"o=$o" '{if(NR==2){print $o}}' $ins_in_table;`
 
-    echo $lolo
-    typeset -i hamada=0
+ 
+    typeset -i numberset=0
 
-    while [ $hamada -eq 0 ]
+    while [ $numberset -eq 0 ]
     do
         echo "enter $col_data and its type must be $col_type" 
         read 
@@ -35,21 +35,21 @@ function insert () {
                     if [ $REPLY == $i ]
                     then 
                         echo "you can't duplicate PK, please try again."
-                        insert                                                
+                        DB_menu                                                
                     fi
                 done
 
                 if [[ $col_type = "number" && "$REPLY" = +([0-9]) || $col_type = "string" && "$REPLY" = +([a-zA-Z]) ]]
                 then
                     echo -n "$REPLY;" >> $ins_in_table
-                    hamada=hamada+1
+                    numberset=numberset+1
                 fi
                 
             else
                 echo "You won't be able to make insertion without enter your PK "
                 echo "Try again"
                 echo ""
-                insert
+                DB_menu
         fi
 
         elif [ $z -eq $ins_cols ]
@@ -58,7 +58,7 @@ function insert () {
             if [[ $col_type = "number" && "$REPLY" = +([0-9]) || $col_type = "string" && "$REPLY" = +([a-zA-Z]) ]]
             then
                 echo  "$REPLY" >> $ins_in_table
-                hamada=hamada+1
+                numberset=numberset+1
             fi
              
 
@@ -67,7 +67,7 @@ function insert () {
             if [[ $col_type = "number" && "$REPLY" = +([0-9]) || $col_type = "string" && "$REPLY" = +([a-zA-Z]) ]]
             then
                 echo -n "$REPLY;" >> $ins_in_table
-                hamada=hamada+1
+                numberset=numberset+1
             fi
 
         fi

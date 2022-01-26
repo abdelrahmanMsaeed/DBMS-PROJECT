@@ -7,7 +7,7 @@ function touch_table () {
 
 # metadata = how many columns and it's type
 function cols_number () {
-    echo "Enter your cols number ..."
+    echo "Enter How many columns you want ... "
     read  cols
     re='^[0-9]+$'
     if ! [[ $cols =~ $re ]]
@@ -20,6 +20,7 @@ function cols_number () {
     typeset -i cols_len=$cols
     cols_len=cols_len-1
     typeset -i i=0
+
 
 
     echo "***************************************************"
@@ -84,7 +85,6 @@ function cols_name () {
     typeset -i data_cols=0
     data_cols=`awk -F";" '{print NF; exit}' $table_name`
     data_cols=data_cols-1
-    echo $data_cols
     
     while [ $y -le $data_cols ]
     do

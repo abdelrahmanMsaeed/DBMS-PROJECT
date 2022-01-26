@@ -17,10 +17,11 @@
 }
 
 
+
 # create tables in database
 function create_table {
      
-        echo " Enter your table name you want to create ... "
+        echo " Enter name for the table you want to create ... "
         read table_name 
         if [ -f $table_name ]
         then
