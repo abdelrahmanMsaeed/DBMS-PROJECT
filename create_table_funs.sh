@@ -9,6 +9,7 @@ function touch_table () {
 function cols_number () {
     echo "Enter How many columns you want ... "
     read  cols
+
     re='^[0-9]+$'
     if ! [[ $cols =~ $re ]]
     then
@@ -17,6 +18,8 @@ function cols_number () {
     else
         echo "okay your DB will have $cols coulmns"
     fi
+
+
     typeset -i cols_len=$cols
     cols_len=cols_len-1
     typeset -i i=0
@@ -55,7 +58,8 @@ function cols_number () {
                         echo "Error select option 1 or 2";;
                 esac			
             done
-            else
+        else
+
             echo "type for the column number" 
 
             select choice in 'string' 'number' 
@@ -92,11 +96,10 @@ function cols_name () {
 
     data_cols=cols_len
 
-    echo $data_cols
-    echo $y
-    
+
     while [ $y -le $data_cols ]
     do
+    
         echo "enter column name" 
         read
         if [ $y -eq $data_cols ]
@@ -108,6 +111,7 @@ function cols_name () {
             n="${n}$REPLY;"
         fi
         y=y+1
+
     done
     
         touch_table $table_name
