@@ -28,7 +28,6 @@ function create_table {
             echo "this table is already exist"
             DB_menu
         else
-            touch_table $table_name
             cols_number
         fi
 }

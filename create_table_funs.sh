@@ -78,34 +78,42 @@ function cols_number () {
             i=i+1
 
     done
-    echo $t >> $table_name
     cols_name
 }
 
 
-typeset -i y=0
 
 
 # columns metadata = columns name
 function cols_name () {
     
-
+    typeset -i y=0
     typeset -i data_cols=0
-    data_cols=`awk -F";" '{print NF; exit}' $table_name`
-    data_cols=data_cols-1
+
+    data_cols=cols_len
+
+    echo $data_cols
+    echo $y
     
     while [ $y -le $data_cols ]
     do
         echo "enter column name" 
         read
         if [ $y -eq $data_cols ]
-        then    
-            echo  "$REPLY" >> $table_name
+        then
+            n="${n}$REPLY"    
+            # echo  "$REPLY" >> $table_name
         else
-            echo -n "$REPLY;" >> $table_name
+            # echo -n "$REPLY;" >> $table_name
+            n="${n}$REPLY;"
         fi
         y=y+1
     done
+    
+        touch_table $table_name
+        echo $t >> $table_name
+        echo $n >> $table_name
+
         echo "*****************************************************************"
         echo "*                                                               *"
         echo "     your $table_name table  has been added successfully     " 
