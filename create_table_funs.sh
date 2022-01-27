@@ -21,6 +21,8 @@ function cols_number () {
     cols_len=cols_len-1
     typeset -i i=0
 
+    t=""
+    n=""
 
 
     echo "***************************************************"
@@ -42,10 +44,12 @@ function cols_number () {
             do
                 case $REPLY in
                     1)
-                        echo  "string" >> $table_name;break
+                        # echo  "string" >> $table_name;break
+                        t="${t}string";break
                         ;;
                     2)
-                        echo  "number" >> $table_name;break
+                        # echo  "number" >> $table_name;break
+                        t="${t}number";break
                         ;;
                     *)
                         echo "Error select option 1 or 2";;
@@ -58,10 +62,13 @@ function cols_number () {
             do
                 case $REPLY in
                     1)
-                        echo -n "string;" >> $table_name;break
+                        # echo -n "string;" >> $table_name;break
+                        t="${t}string;";break
                         ;;
                     2)
-                        echo -n "number;" >> $table_name;break
+                        # echo -n "number;" >> $table_name;break
+                        t="${t}number;";break
+
                         ;;
                     *)
                         echo "Error select option 1 or 2";;
@@ -71,6 +78,7 @@ function cols_number () {
             i=i+1
 
     done
+    echo $t >> $table_name
     cols_name
 }
 

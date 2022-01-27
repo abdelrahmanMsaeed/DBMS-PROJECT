@@ -24,8 +24,6 @@ function select_table () {
         ;;
     esac
     done
-
-
 }
 
 function select_row () {
@@ -53,7 +51,7 @@ function select_all_table() {
 }
 
 function select_coulmn() {
-    
+
     columns_names1=`awk -F";" '{if(NR==2){for ( i=1 ; i<=NF; i++) {print $i}}}' $table_info;`
     echo $columns_names1
     echo "which column you want to select ..?"

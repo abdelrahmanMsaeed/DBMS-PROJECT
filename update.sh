@@ -84,7 +84,3 @@ function update_record () {
     
 }
 
-            for w in $columns_names
-            do
-                indexs=`awk -F";" '{if(NR==2){for ( i=1 ; i<=NF; i++) {if($i=="'$c_name'") {print i}}}}' $table_to_update;`
-            done

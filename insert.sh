@@ -3,6 +3,7 @@ function insert () {
 
     echo "which table to insert in?"
     ls
+
     read ins_in_table
     typeset -i ins_cols=0
     ins_cols=`awk -F";" '{print NF; exit}' $ins_in_table`
@@ -10,7 +11,6 @@ function insert () {
     typeset -i z=0
     typeset -i o=1
 
-	
 
     while [ $z -le $ins_cols ]
     do
@@ -76,5 +76,5 @@ function insert () {
         o=o+1
         z=z+1
     done
-}
 
+}
