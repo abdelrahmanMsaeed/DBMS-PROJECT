@@ -54,27 +54,44 @@ function select_coulmn() {
 
     columns_names1=`awk -F";" '{if(NR==2){for ( i=1 ; i<=NF; i++) {print $i}}}' $table_info;`
     echo $columns_names1
+
     echo "which column you want to select ..?"
     read c_select_name
+
     columns_select_names=`awk -F";" '{if(NR==2){for ( i=1 ; i<=NF; i++) {print $i}}}' $table_info;`
-    if [[ ! "${columns_select_names[*]}" =~ "$c_select_name" ]]; then
-    echo "there is no column with this name"
-    echo ${columns_select_names[*]}
-    DB_menu
-    fi
-    for w in $columns_select_names
+    
+    
+
+    typeset -i l=0
+    for vl in $columns_select_names
     do
-        if [ $c_select_name == $w ]
-        then
-        indexs_select=`awk -F";" '{if(NR==2){for ( i=1 ; i<=NF; i++) {if($i=="'$c_select_name'") {print i}}}}' $table_info;`
+        if [ $vl = $c_select_name ]
+        then 
+            l=l+1
         fi
     done
+
+    if [ $l -gt 0 ]
+    then
+        for w in $columns_select_names
+        do
+            if [ $c_select_name = $w ]
+            then
+            indexs_select=`awk -F";" '{if(NR==2){for ( i=1 ; i<=NF; i++) {if($i=="'$c_select_name'") {print i}}}}' $table_info;`
+            fi
+        done
       
     
-    columns_show=`awk -F";" -v"indexs_select=$indexs_select" '{if(NR>2){print $indexs_select}}' $table_info`
+        columns_show=`awk -F";" -v"indexs_select=$indexs_select" '{if(NR>2){print $indexs_select}}' $table_info`
+    else
+        echo "there is no column with this name"
+        echo ${columns_select_names[*]}
+        DB_menu
+    fi
 
     for vk in $columns_show
     do
         echo $vk
     done
+    
 }

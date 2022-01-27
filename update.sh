@@ -41,13 +41,23 @@ function update_record () {
     read c_name
 
 
-    #check if the columns is there
-    if [[ ! "${columns_names[*]}" =~ "$c_name" ]]; then
+
+    typeset -i l=0
+    for vl in $columns_names
+    do
+        if [ $vl = $c_name ]
+        then 
+            l=l+1
+        fi
+    done
+
+    if [ $l -eq 0 ]
+    then 
         echo "there is no column with this name"
         echo ${columns_names[*]}
         DB_menu
-    fi       
-    
+    fi
+
 
     echo "what is the new value ?"
     read new_value
