@@ -19,11 +19,11 @@ function update_record () {
     typeset -i fnumber=1
 
     columns_names=`awk -F";" '{if(NR==2){for ( i=2 ; i<=NF; i++) {print $i}}}' $table_to_update;`
-  #  col_type=`awk -F";" -v"fnumber=$fnumber" '{if(NR==1){for ( fnumber=1 ; fnumber<=NF; fnumber++) {print $fnumber}}}' $table_to_update;`
 
 
     #information for PK
     recordupdate_data=`awk -F";" '{print $1}' $table_to_update`
+
     for key in $recordupdate_data
     do
         if [ $key = "string" ] || [ $key = "number" ]
@@ -43,6 +43,7 @@ function update_record () {
 
 
     typeset -i l=0
+
     for vl in $columns_names
     do
         if [ $vl = $c_name ]
@@ -50,6 +51,7 @@ function update_record () {
             l=l+1
         fi
     done
+
 
     if [ $l -eq 0 ]
     then 
@@ -64,6 +66,7 @@ function update_record () {
 
 
     typeset -i a=1
+    
     for value in $recordupdate_data
     do
         if [ $value == $pk_update ]
@@ -72,6 +75,7 @@ function update_record () {
             do
                 indexs=`awk -F";" '{if(NR==2){for ( i=1 ; i<=NF; i++) {if($i=="'$c_name'") {print i}}}}' $table_to_update;`
             done
+
             if [ $a -gt 2 ]
             then
                 col_type=`awk -F";" -v"indexs=$indexs" '{if(NR==1) {print $indexs}}' $table_to_update;`
@@ -86,8 +90,6 @@ function update_record () {
                 echo "you cant change metadata"
             fi
 
-        # else
-        #   echo "no pk with this name"
         fi
     a=a+1
     done
