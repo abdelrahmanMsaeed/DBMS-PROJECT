@@ -11,10 +11,10 @@ function insert () {
     typeset -i z=0
     typeset -i o=1
 
-
+    x=""
     while [ $z -le $ins_cols ]
     do
-    
+
     col_type=`awk -F";" -v"o=$o" '{if(NR==1){print $o}}' $ins_in_table;`
     col_data=`awk -F";" -v"o=$o" '{if(NR==2){print $o}}' $ins_in_table;`
 
@@ -43,7 +43,7 @@ function insert () {
 
                     if [[ $col_type = "number" && "$REPLY" = +([0-9]) || $col_type = "string" && "$REPLY" = +([a-zA-Z]) ]]
                     then
-                        echo -n "$REPLY;" >> $ins_in_table
+                        x="${x}$REPLY;"
                         numberset=numberset+1
                     fi
                     
@@ -59,7 +59,7 @@ function insert () {
 
                 if [[ $col_type = "number" && "$REPLY" = +([0-9]) || $col_type = "string" && "$REPLY" = +([a-zA-Z]) ]]
                 then
-                    echo  "$REPLY" >> $ins_in_table
+                    x="${x}$REPLY"
                     numberset=numberset+1
                 fi
                 
@@ -68,7 +68,7 @@ function insert () {
             
                 if [[ $col_type = "number" && "$REPLY" = +([0-9]) || $col_type = "string" && "$REPLY" = +([a-zA-Z]) ]]
                 then
-                    echo -n "$REPLY;" >> $ins_in_table
+                    x="${x}$REPLY;"
                     numberset=numberset+1
                 fi
 
@@ -78,5 +78,5 @@ function insert () {
         o=o+1
         z=z+1
     done
-
+    echo $x >> $ins_in_table
 }

@@ -13,8 +13,8 @@ function cols_number () {
     re='^[0-9]+$'
     if ! [[ $cols =~ $re ]]
     then
-        echo "error: Not a number"
-        cols_number
+        echo "error: $cols Not a number"
+        DB_menu
     else
         echo "okay your DB will have $cols coulmns"
     fi
@@ -47,12 +47,10 @@ function cols_number () {
             do
                 case $REPLY in
                     1)
-                        # echo  "string" >> $table_name;break
-                        t="${t}string";break
+                        t="${t}string";col_name1;break
                         ;;
                     2)
-                        # echo  "number" >> $table_name;break
-                        t="${t}number";break
+                        t="${t}number";col_name1;break
                         ;;
                     *)
                         echo "Error select option 1 or 2";;
@@ -66,12 +64,10 @@ function cols_number () {
             do
                 case $REPLY in
                     1)
-                        # echo -n "string;" >> $table_name;break
-                        t="${t}string;";break
+                        t="${t}string;";col_name2;break
                         ;;
                     2)
-                        # echo -n "number;" >> $table_name;break
-                        t="${t}number;";break
+                        t="${t}number;";col_name2;break
 
                         ;;
                     *)
@@ -91,28 +87,6 @@ function cols_number () {
 # columns metadata = columns name
 function cols_name () {
     
-    typeset -i y=0
-    typeset -i data_cols=0
-
-    data_cols=cols_len
-
-
-    while [ $y -le $data_cols ]
-    do
-    
-        echo "enter column name" 
-        read
-        if [ $y -eq $data_cols ]
-        then
-            n="${n}$REPLY"    
-            # echo  "$REPLY" >> $table_name
-        else
-            # echo -n "$REPLY;" >> $table_name
-            n="${n}$REPLY;"
-        fi
-        y=y+1
-
-    done
     
         touch_table $table_name
         echo $t >> $table_name
@@ -126,4 +100,15 @@ function cols_name () {
 
 }
 
+function col_name1 () {
+    echo "enter column name"
+    read
+    n="${n}$REPLY"    
 
+}
+
+function col_name2 () {
+    echo "enter column name"
+    read
+    n="${n}$REPLY;"    
+}
