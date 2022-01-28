@@ -5,6 +5,7 @@ function insert () {
     ls
 
     read ins_in_table
+
     typeset -i ins_cols=0
     ins_cols=`awk -F";" '{print NF; exit}' $ins_in_table`
     ins_cols=ins_cols-1 
@@ -12,12 +13,14 @@ function insert () {
     typeset -i o=1
 
     x=""
+
     while [ $z -le $ins_cols ]
     do
 
     col_type=`awk -F";" -v"o=$o" '{if(NR==1){print $o}}' $ins_in_table;`
     col_data=`awk -F";" -v"o=$o" '{if(NR==2){print $o}}' $ins_in_table;`
-
+    
+    
  
     typeset -i numberset=0
 

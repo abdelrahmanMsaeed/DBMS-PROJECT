@@ -26,6 +26,7 @@ function select_table () {
     done
 }
 
+
 function select_row () {
 
     recorded_data=`awk -F";" '{print $1}' $table_info`
@@ -42,6 +43,7 @@ function select_row () {
         done   
 }
 
+
 function select_all_table() {
     all_table_data=`awk -F";" '{if(NR>1) {print $0,"\n"}}' $table_info;`
     for i in $all_table_data
@@ -50,18 +52,19 @@ function select_all_table() {
     done
 }
 
-function select_coulmn() {
 
-    columns_names1=`awk -F";" '{if(NR==2){for ( i=1 ; i<=NF; i++) {print $i}}}' $table_info;`
-    echo $columns_names1
+
+function select_coulmn() {
+    columns_select_names=`awk -F";" '{if(NR==2){for ( i=1 ; i<=NF; i++) {print $i}}}' $table_info;`
+
+    # columns_names1=`awk -F";" '{if(NR==2){for ( i=1 ; i<=NF; i++) {print $i}}}' $table_info;`
+    echo $columns_select_names
 
     echo "which column you want to select ..?"
     read c_select_name
 
-    columns_select_names=`awk -F";" '{if(NR==2){for ( i=1 ; i<=NF; i++) {print $i}}}' $table_info;`
-    
-    
 
+# check if the colums existed   
     typeset -i l=0
     for vl in $columns_select_names
     do
@@ -70,6 +73,7 @@ function select_coulmn() {
             l=l+1
         fi
     done
+
 
     if [ $l -gt 0 ]
     then

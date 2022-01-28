@@ -7,7 +7,6 @@ then
     echo "db is ready"
 else
     mkdir DBS
-
 fi
 
 

@@ -1,4 +1,6 @@
+#delete database
 function delete_database {
+    echo "select database to delete..."
     list_database
     read db_delete
     if [ -d DBS/$db_delete ]
@@ -12,7 +14,7 @@ function delete_database {
         main
     
     else
-        echo "no such database called $db_delete, enter 1 to delete anothe DB or any thing else for main menu."
+        echo "no such database called $db_delete, enter 1 to delete another DB or any thing else for main menu."
         select choice in "Delete DB" 
         do
             case $REPLY in
@@ -28,7 +30,7 @@ function delete_database {
 }
 
 
-
+#delete table
 function drop_table {
     ls
     echo ""
@@ -63,4 +65,3 @@ function drop_table {
     fi
 }
 
-# . ./list.sh

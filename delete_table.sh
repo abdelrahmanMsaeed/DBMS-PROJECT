@@ -1,18 +1,14 @@
 function delete_record () {
-    echo "which table to insert in?"
+    echo "which table to delete from?"
     ls
-
-    echo "enter the table to delete from"
     read table_to_delte_from
 
     echo "enter the pk for record to delete."
     read pk_del
     echo ""
 
-    records_data=`awk -F";" '{print $1}' $table_to_delte_from`
-    echo $records_data
-    echo ""
-    echo $pk_del
+    records_data=`awk -F";" '{if(NR>2) {print $1}}' $table_to_delte_from`
+
 
     for value in $records_data
     do

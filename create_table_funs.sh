@@ -34,14 +34,14 @@ function cols_number () {
     echo "*                                                 *"
     echo "***************************************************"    
 
-################################### check type ###############################
+
 
     while [ $i -le $cols_len ]
     do
 
         if [ $i -eq $cols_len ]
         then
-            echo "type for the column number" 
+            echo "type for the column number $(( i + 1 ))" 
 
             select choice in 'string' 'number' 
             do
@@ -58,7 +58,7 @@ function cols_number () {
             done
         else
 
-            echo "type for the column number" 
+            echo "type for the column number $(( i + 1 ))" 
 
             select choice in 'string' 'number' 
             do
