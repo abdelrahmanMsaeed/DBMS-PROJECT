@@ -6,7 +6,7 @@ if [ -d DBS ]
 then
     echo "db is ready"
 else
-    touch DBS
+    mkdir DBS
 
 fi
 
