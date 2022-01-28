@@ -2,6 +2,13 @@
 
 echo "Select Option From The Next Menu: "
 
+if [ -d DBS ]
+then
+    echo "db is ready"
+else
+    touch DBS
+
+fi
 
 
 function main {
